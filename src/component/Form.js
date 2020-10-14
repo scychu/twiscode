@@ -1,7 +1,42 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import logo from '../images/logo.png';
+import Modal from './Modal';
 
 export default function Form() {
+    const [code, setCode] = useState([]);
+    const [modal, setModal] = useState(false);
+
+    // const componentDidMount= (){
+    //     nationCode()
+    // }
+    
+    const nationCode = async ()=> {
+        // let values = document.getElementById('#tes').value;
+        // console.log(this.state.input)
+        await fetch(`https://restcountries.eu/rest/v2/all`, {
+          method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+            setCode(data)
+          console.log('Success:', data);
+          console.log(code)
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+      const submitForm = (e)=> {
+          e.preventDefault()
+        setModal(true)
+      }
+
+
+    const opCode = code.map((code,index)=>
+        <option key={index-1}>{code.name}</option>
+        )
+
+
     const day = []
     for(let i=1;i<32;i++){
         day.push(i)
@@ -15,6 +50,7 @@ export default function Form() {
 
     return (
         <div className="form-container">
+            {modal? <Modal />:""}
             <div className="header">
                 <div className="logo">
                     <img src={logo} alt="logo"/>
@@ -52,13 +88,24 @@ export default function Form() {
                             <input type="text"placeholder="First name"/>
                         </div>
                     </div>
-                    <label for="phone">Mobile phone number</label>
+                    <h4>Mobile phone number</h4>
+                    <span>*</span>
+                    <div>
+                    <select className="phoneCountry" onClick={nationCode}>
+                        <option value="choose" selected>Select Country</option>
+                        {opCode}
+                    </select>
+                    {/* <divut disabled defaulValue="62">{code ==[] ? "+62": "+62"}</input> */}
+                    {/* <p>{code.length===null ? "+62": code.callingCodes[0]}</p> */}
+                    <input type="tel" placeholder="Mobile phone number"/>
+                    </div>
                     <h3>Address</h3>
                     <h4>Address</h4>
                     <input type="text" placeholder="Address"/>
                     <div className="detail-location">
                         <div className="country1">
                             <h4>Country/Location</h4>
+                            <span>*</span>
                             <select className="country" id="country" name="country">
                                 <option value="choose" selected>Select Country/Location</option>
                                 <option value="australia">Australia</option>
@@ -80,11 +127,13 @@ export default function Form() {
                     <div className="personal">
                         <div className="email">
                             <h4>Email Address</h4>
+                            <span>*</span>
                             <input type="email"/>
                         </div>
                         <div className="birthday">
                             <div className="date">
                                 <h4>Date of birth</h4>
+                                <span>*</span>
                                 <select id="day" name="day" defaultValue="DD">
                                     <option disabled>DD</option>
                                     {opDay}
@@ -93,6 +142,7 @@ export default function Form() {
                             </div>
                             <div className="month">
                                 <h4>Month</h4>
+                                <span>*</span>
                                 <select id="month" name="month">
                                     <option selected disabled>MM</option>
                                     <option>January</option>
@@ -170,7 +220,7 @@ export default function Form() {
                         <input type="checkbox" id="gridCheck6"/>
                         <label for="gridCheck6">I have read and understand the above term and condition and hereby that i will be bounded by these conditions and policies once I have submitted this application form.</label>
                     </div>
-                    <button className="create">CREATE CUSTOMER</button>
+                    <button className="create" onClick={submitForm}>CREATE CUSTOMER</button>
                 </form>
             </div>
         </div>
