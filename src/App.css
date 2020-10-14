@@ -1,38 +1,214 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+
+body{
+  font-family:  'Raleway', sans-serif;
+}
+.header{
+  display:grid;
+  grid-template-columns:auto auto auto auto auto;
+  /* grid-template-rows: 5px 30px; */
+  /* margin:2rem 0; */
+}
+.logo{
+  grid-column: 4/5;
+  /* grid-row: 2/3; */
+}
+.logo img{
+  width:10em;
+}
+.lang{
+  grid-column: 6/6;
+  /* grid-row: 2/3; */
+}
+.notif{
   text-align: center;
+  background-color: #FFCB01;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+ul{
+  padding:0;
+}
+ul.policies li{
+  text-decoration: none;
+  list-style: none;
+  margin:1rem 0;
+  font-style: italic;
+  text-align: left;
+}
+div{
+  margin:1rem 0;
+}
+button.create{
+  float: right;
+  padding:1rem;
+  border: none;
+  background-color:#FFCB01;
+  color:#000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form{
+  margin:5rem 3rem;
+}
+.form h4{
+  margin-bottom:0;
+}
+.full-name,.detail-location,.personal{
+  display:flex;
+  justify-content: space-between;
+  /* width:100%; */
+}
+.last,.country1,.email{
+  margin-right:2rem;
+}
+.last h4,.first h4{
+  display:inline;
+}
+.last span,.first span{
+  font-weight: bold;
+  font-size: large;
+  color:red;
+}
+.last,.first,.country1,.country2,.email,.birthday{
+  width: 90%;
+}
+input[type=checkbox]{
+  box-sizing: border-box;
+  border: 2px solid #FFCB01;
+  /* border-radius: 4px; */
+}
+input[type=text],
+input[type=email]{
+  box-sizing: border-box;
+  border: 2px solid #F5f5f5;
+  padding:0.8rem;
+  width:100%;
+  border-radius: 0.3rem;
+}
+.toggles{
+  display:flex;
+  justify-content: space-between;
+  height:10rem;
+  position: relative;
+}
+.country,.province,select{
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 2px solid #F5f5f5;
+  padding:0.8rem;
+  width:100%;
+  border-radius: 0.3rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* .birthday .date,.month,.year{
+  display: inline-block;
+} */
+.personal{
+  height:10rem;
+}
+.birthday{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 22px;
+  margin-left:0.5rem;
+}
+.year,.month,.date{
+  margin:0;
+}
+.date{
+  position: relative;
+}
+.month{
+  margin:0 2rem;
+}
+/* Toggle Slider*/
+/* Hide default HTML checkbox  from w3school */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.App-link {
-  color: #61dafb;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input:checked + .slider {
+  background-color:#FFCB01;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #FFCB01
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.tooltip{
+  width: 18rem;
+  height: 5rem;
+  background-color:#FFCB01;
+  border-color: transparent transparent orange transparent;
+  color: #000;
+  text-align: left;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 0;
+  padding: 1rem;
+}
+.tooltip2{
+  width: 9rem;
+  line-height: 1,5rem;
+  height: 3rem;
+  background-color:#FFCB01;
+  border-color: transparent transparent orange transparent;
+  color: #000;
+  text-align: left;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 70%;
+  left: 0;
+  padding: 1rem;
 }
